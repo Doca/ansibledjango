@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load staticfiles compress %}
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Home</title>
+     {% compress css %}
+    <link href="{% static 'less/project.less' %}" rel="stylesheet" type="text/less">
+    {% endcompress %}
+</head>
+<body>
+<div class="row">
+    <div class="col-md-2"><p>This is home! {{ STATIC_URL }}</p></div>
+     {% block page %}
+        <div class="page-wrap">
+
+
+            <!-- .container -->
+            <div class="container">
+
+                {% block content %}{% endblock %}
+
+            </div>
+            <!-- /.container -->
+
+        </div><!-- /.page-wrap -->
+
+
+        {% endblock page %}
+
+
+</div>
+</body>
+</html>

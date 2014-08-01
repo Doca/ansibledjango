@@ -1,14 +1,14 @@
-{% extends "registration_base.html" %}
-{% load i18n %}
-{% block title %}{% if account %}{% trans "Activation complete" %}{% else %}{% trans "Activation problem" %}{% endif %}{% endblock %}
-{% block content %}
-{% url 'auth_login' as auth_login_url %}
-{% if account %}
-{% blocktrans %}
-Thanks {{ account }}, activation complete!
-You may now <a href='{{ auth_login_url }}'>login</a> using the username and password you set at registration.
-{% endblocktrans %}
-{% else %}
-{% blocktrans %}Oops &ndash; it seems that your activation key is invalid.  Please check the url again.{% endblocktrans %}
-{% endif %}
-{% endblock %}
+{% templatetag openblock %} extends "registration_base.html" {% templatetag closeblock %}
+{% templatetag openblock %} load i18n {% templatetag closeblock %}
+{% templatetag openblock %} block title {% templatetag closeblock %}{% templatetag openblock %} if account {% templatetag closeblock %}{% templatetag openblock %} trans "Activation complete" {% templatetag closeblock %}{% templatetag openblock %} else {% templatetag closeblock %}{% templatetag openblock %} trans "Activation problem" {% templatetag closeblock %}{% templatetag openblock %} endif {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% templatetag openblock %} block content {% templatetag closeblock %}
+{% templatetag openblock %} url 'auth_login' as auth_login_url {% templatetag closeblock %}
+{% templatetag openblock %} if account {% templatetag closeblock %}
+{% templatetag openblock %} blocktrans {% templatetag closeblock %}
+Thanks {% templatetag openvariable %} account {% templatetag closevariable %}, activation complete!
+You may now <a href='{% templatetag openvariable %} auth_login_url{% templatetag closevariable %}'>login</a> using the username and password you set at registration.
+{% templatetag openblock %} endblocktrans {% templatetag closeblock %}
+{% templatetag openblock %} else {% templatetag closeblock %}
+{% templatetag openblock %} blocktrans {% templatetag closeblock %}Oops &ndash; it seems that your activation key is invalid.  Please check the url again.{% templatetag openblock %} endblocktrans {% templatetag closeblock %}
+{% templatetag openblock %} endif {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}

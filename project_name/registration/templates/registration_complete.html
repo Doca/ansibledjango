@@ -1,8 +1,8 @@
-{% extends "registration_base.html" %}
-{% load i18n %}
-{% block title %}{% trans "Activation email sent" %}{% endblock %}
-{% block content %}
-{% blocktrans %}An activation email has been sent.
-Please check your email and click on the link to activate your account.{% endblocktrans %}
-{% endblock %}
+{% templatetag openblock %} extends "registration_base.html" {% templatetag closeblock %}
+{% templatetag openblock %} load i18n {% templatetag closeblock %}
+{% templatetag openblock %} block title %}{% templatetag openblock %} trans "Activation email sent" %}{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% templatetag openblock %} block content {% templatetag closeblock %}
+{% templatetag openblock %} blocktrans %}An activation email has been sent.
+Please check your email and click on the link to activate your account.{% templatetag openblock %} endblocktrans {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 

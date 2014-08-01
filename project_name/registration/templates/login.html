@@ -1,30 +1,30 @@
-{% extends "registration_base.html" %}
-{% load i18n %}
-{% block title %}{% trans "Login" %}{% endblock %}
-{% block content %}
-{% url 'auth_password_reset' as auth_pwd_reset_url %}
-{% url 'registration_register' as register_url%}
+{% templatetag openblock %} extends "registration_base.html" {% templatetag closeblock %}
+{% templatetag openblock %} load i18n {% templatetag closeblock %}
+{% templatetag openblock %} block title %}{% templatetag openblock %} trans "Login" %}{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% templatetag openblock %} block content {% templatetag closeblock %}
+{% templatetag openblock %} url 'auth_password_reset' as auth_pwd_reset_url {% templatetag closeblock %}
+{% templatetag openblock %} url 'registration_register' as register_url {% templatetag closeblock %}
 
-{% if form.errors %}
-<p>{% blocktrans %}Your username and password didn't match. Please try again.{% endblocktrans %}</p>
-{% endif %}
+{% templatetag openblock %} if form.errors {% templatetag closeblock %}
+<p>{% templatetag openblock %} blocktrans {% templatetag closeblock %}Your username and password didn't match. Please try again.{% templatetag openblock %} endblocktrans {% templatetag closeblock %}</p>
+{% templatetag openblock %} endif {% templatetag closeblock %}
 
-<form method="post" action="{% url 'auth_login' %}">{% csrf_token %}
+<form method="post" action="{% templatetag openblock %} url 'auth_login' {% templatetag closeblock %}">{% templatetag openblock %} csrf_token {% templatetag closeblock %}
 <table>
 <tr>
-    <td>{% trans form.username.label_tag %}</td>
-    <td>{{ form.username }}</td>
+    <td>{% templatetag openblock %} trans form.username.label_tag {% templatetag closeblock %}</td>
+    <td>{% templatetag openvariable %} form.username {% templatetag closevariable %}</td>
 </tr>
 <tr>
-    <td>{% trans form.password.label_tag %}</td>
-    <td>{{ form.password }}</td>
+    <td>{% templatetag openblock %} trans form.password.label_tag {% templatetag closeblock %}</td>
+    <td>{% templatetag openvariable %} form.password {% templatetag closevariable %}</td>
 </tr>
 </table>
-<p>{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">Forgot</a> your password?
-    <a href="{{ register_url }}">Need an account</a>?{% endblocktrans %}</p>
+<p>{% templatetag openblock %} blocktrans {% templatetag closeblock %}<a href="{% templatetag openvariable %} auth_pwd_reset_url {% templatetag closevariable %}">Forgot</a> your password?
+    <a href="{% templatetag openvariable %} register_url {% templatetag closevariable %}">Need an account</a>?{% templatetag openblock %} endblocktrans {% templatetag closeblock %}</p>
 
-<input type="submit" value="{% trans "login" %}" />
-<input type="hidden" name="next" value="{{ next }}" />
+<input type="submit" value="{% templatetag openblock %} trans "login" {% templatetag closeblock %}" />
+<input type="hidden" name="next" value="{% templatetag openvariable %} next {% templatetag closevariable %}" />
 </form>
 
-{% endblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}

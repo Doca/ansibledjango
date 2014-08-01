@@ -12,7 +12,7 @@
 <form method="post" action="{% templatetag openblock %} url 'auth_login' {% templatetag closeblock %}">{% templatetag openblock %} csrf_token {% templatetag closeblock %}
 <table>
 <tr>
-    <td>{% templatetag openblock %} trans form.username.label_tag {% templatetag closeblock %}</td>
+    <td>{% templatetag openvariable %}form.username.label_tag{% templatetag closevariable %}</td>
     <td>{% templatetag openvariable %} form.username {% templatetag closevariable %}</td>
 </tr>
 <tr>

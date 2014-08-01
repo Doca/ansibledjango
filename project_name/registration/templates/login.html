@@ -1,6 +1,6 @@
 {% templatetag openblock %} extends "registration_base.html" {% templatetag closeblock %}
 {% templatetag openblock %} load i18n {% templatetag closeblock %}
-{% templatetag openblock %} block title %}{% templatetag openblock %} trans "Login" {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% templatetag openblock %} block title %}Login{% templatetag openblock %} endblock {% templatetag closeblock %}
 {% templatetag openblock %} block content {% templatetag closeblock %}
 {% templatetag openblock %} url 'auth_password_reset' as auth_pwd_reset_url {% templatetag closeblock %}
 {% templatetag openblock %} url 'registration_register' as register_url {% templatetag closeblock %}
@@ -23,7 +23,7 @@
 <p>{% templatetag openblock %} blocktrans {% templatetag closeblock %}<a href="{% templatetag openvariable %} auth_pwd_reset_url {% templatetag closevariable %}">Forgot</a> your password?
     <a href="{% templatetag openvariable %} register_url {% templatetag closevariable %}">Need an account</a>?{% templatetag openblock %} endblocktrans {% templatetag closeblock %}</p>
 
-<input type="submit" value="{% templatetag openblock %} trans "login" {% templatetag closeblock %}" />
+<input type="submit" value="login" />
 <input type="hidden" name="next" value="{% templatetag openvariable %} next {% templatetag closevariable %}" />
 </form>
 

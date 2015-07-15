@@ -1,0 +1,123 @@
+---
+- hosts: localhost
+  connection: local
+  vars:
+    server_ip: 125.458.4154.44 # CHANGE THIS
+    vhost_name: somewebsite.de # CHANGE THIS
+    project_name: something # CHANGE THIS
+    local_project_dir: /home/dorian/workspace/regboilerplate/ # CHANGE THIS
+    remote_project_dir : /var/www/{{vhost_name}}/{{project_name}}/ # OPTIONAL CHANGE
+    git_repo: repo=git@gitsomthing.com
+
+  tasks:
+  - name: create fab file
+    template: src=~/workspace/ansible_templates/fabfile_template.j2 dest={{local_project_dir}}fabfile.py
+    delegate_to: localhost
+
+  - name: create manage.py file
+    template: src=~/workspace/ansible_templates/manage.j2 dest={{local_project_dir}}manage.py
+    delegate_to: localhost
+
+  - name: create reload file
+    shell: touch {{local_project_dir}}uwsgi.reload
+    delegate_to: localhost
+
+
+
+#- hosts: webservers
+#  remote_user: dorian
+#  vars:
+#    vhost_name: somewebsite.de # CHANGE THIS
+#    project_name: somewebsite # CHANGE THIS
+#    mysql_pw: somepassword # CHANGE THIS
+#    project_dir : /var/www/{{vhost_name}}/{{project_name}}/
+#    git_repo: repo=git@gitsomthing.com
+#
+#  tasks:
+#  - name: create a nginx v-server
+#    sudo: yes
+#    template: src=~/workspace/ansible_templates/nginx_v_server.j2 dest=/etc/nginx/sites-available/{{ vhost_name }}
+#    notify: restart nginx
+#    tags:
+#      - initial
+#
+#  - name: Create symlink for v-server
+#    sudo: yes
+#    file: src=/etc/nginx/sites-available/{{ vhost_name }} dest=/etc/nginx/sites-enabled/{{ vhost_name }} state=link
+#    notify: restart nginx
+#
+#    tags:
+#      - initial
+#
+#  - name: create uwsgi process
+#    sudo: yes
+#    template: src=~/workspace/ansible_templates/uwsgi_template.j2 dest=/etc/uwsgi/apps-available/{{project_name}}.ini
+#    notify: restart nginx
+#    tags:
+#      - initial
+#
+#  - name: Create symlink for uwsgi-process
+#    sudo: yes
+#    file: src=/etc/uwsgi/apps-available/{{project_name}}.ini dest=/etc/uwsgi/apps-enabled/{{project_name}}.ini state=link
+#    notify: restart uwsgi
+#
+#    tags:
+#      - initial
+#
+#  - name: Create mysql database
+#    mysql_db: name={{project_name}} state=present login_user=root login_password={{mysql_pw}} collation=utf8_general_ci
+#
+#
+#    tags:
+#      - initial
+#
+#  - name: Create mysql user
+#    mysql_user: user={{project_name}} password={{mysql_pw}} priv={{project_name}}.*:ALL,GRANT state=present login_user=root login_password={{mysql_pw}}
+#    tags:
+#      - initial
+#
+#  - name: Creating Project Folder
+#    sudo: yes
+#    file: path=/var/www/{{vhost_name}} state=directory owner={{remote_user}} group={{remote_user}}
+#    tags:
+#      - initial
+#
+#  - name: check if virtualenv already exists
+#    stat: path={{project_dir}}/
+#    register: venv_dir
+#    tags:
+#      - initial
+#
+#
+#  - name: create virtualenv for Django web app
+#    shell: virtualenv /var/www/{{vhost_name}}
+#    when: venv_dir.stat.isdir is not defined
+#    tags:
+#      - initial
+#
+#  - name: Clone repository
+#    git: repo={{git_repo}} dest={{project_dir}} accept_hostkey=yes
+#
+#    sudo: no
+#    tags:
+#      - deploy
+#
+#  - name: install web application dependencies
+#    pip: requirements={{project_dir}}/requirements/production.txt virtualenv={{project_dir}}/
+#    notify:
+#      restart uwsgi
+#    tags:
+#      - deploy
+#
+#
+#
+#  handlers:
+#    - name: start nginx
+#      service: name=nginx state=started
+#
+#    - name: restart nginx
+#      service: name=nginx state=restarted
+#
+#    - name: restart uwsgi
+#      sudo: yes
+#      service: name=uwsgi state=restarted

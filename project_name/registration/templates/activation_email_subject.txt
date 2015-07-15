@@ -1,1 +1,0 @@
-{% templatetag openblock %} load i18n {% templatetag closeblock %}{% templatetag openblock %} blocktrans with sitename=site.name {% templatetag closeblock %}Account registration for {% templatetag openvariable %} sitename {% templatetag closevariable %}{% templatetag openblock %} endblocktrans {% templatetag closeblock %}

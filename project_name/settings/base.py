@@ -45,16 +45,9 @@ DJANGO_APPS = (
 )
 
 LOCAL_APPS = (
-    'compressor',
-    'registration'
 )
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
-
-COMPRESS_PRECOMPILERS = (
-    ('text/less', 'lessc {infile} {outfile}'),
-)
-
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -142,7 +135,6 @@ COMMUNICATION_SENDER_MAIL = 'noreply@noreply.de'
 DEFAULT_FROM_EMAIL = 'cantzen@googlemail.com'
 
 CONTACT_MAIL = ['cantzen@googlemail.com']
-DEFAULT_FROM_EMAIL = 'cantzen@googlemail.com'
 SERVER_EMAIL = 'cantzen@googlemail.com  '
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'cantzen@googlemail.com'

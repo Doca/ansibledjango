@@ -4,14 +4,9 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-COMPRESS = True
-COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = True
-
-COMPRESS_CSS_FILTERS = ('compressor.filters.css_default.CssAbsoluteFilter',
-                        'compressor.filters.cssmin.CSSMinFilter',)
-
-
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../../'))
+STATIC_ROOT = os.path.normpath(os.path.join(PROJECT_ROOT, 'static'))
+MEDIA_ROOT = os.path.normpath(os.path.join(PROJECT_ROOT, 'media'))
 TEMPLATE_LOADERS = (
     (
         'django.template.loaders.cached.Loader', (
@@ -31,7 +26,9 @@ ADMINS = (
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE':'django.db.backends.mysql',
+        'NAME':'project_name',
+        'PASSWORD': 'DATABASE_PW',
+        'USER':'root'
     }
 }

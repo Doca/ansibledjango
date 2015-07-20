@@ -7,7 +7,6 @@ from django.conf import settings
 urlpatterns = [
     # Examples:
     url(r'^$', TemplateView.as_view(template_name="home.html")),
-    url(r'^auth/', include('registration.urls')),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
